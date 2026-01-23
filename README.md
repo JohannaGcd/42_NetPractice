@@ -28,3 +28,13 @@ Level 2:
 	/30 allows only 2 usable Host IPs, so I can use either .1 or .2 (first .0 and last .4 being reserved, as we've seen above). From there, I could pick any IP within allowed ranges:
 	[picked arbitrarily: 192.168.1, outside of the "reserved ranges"] and then for each host a different ending, within scope: .1 and .2.
 
+Level 3:
+- Configuration: 
+	3 host computers, connected via a network switch, which connects devices
+	within the same network. 
+	Given are: Host A-IP (104.198.77.125), and Host C-Mask (255.255.255.128)
+- To complete, I:
+	Modified all the masks to match the given one (Host C - 255.255.255.128)
+	With this mask, there are exactly 126 usable host IPs.
+	Host A's IP is given: 104.198.77.125.
+	

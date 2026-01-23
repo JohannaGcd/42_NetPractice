@@ -1458,3 +1458,38 @@ You can use **any valid public or private IP range**, as long as:
 
 ✅ **Final Answer**:  
 No, you cannot use 127.0.0.1 and 127.0.0.2 for host-to-host communication — they are loopback addresses and refer only to the local machine. Use valid private IPs (like 192.168.x.x, 10.x.x.x, or 172.16.x.x–172.31.x.x) in the same /30 subnet instead."
+
+Me: "(on level 3) what is a "switch S:
+Switch_1" ? is it a router?"
+
+AI: "**“Switch S: Switch_1”** is **not a router** — it is a **network switch**.
+
+---
+
+### ✅ What is a Switch?
+
+A **switch** is a **Layer 2 (Data Link Layer)** device in the OSI model that:
+
+- Connects multiple devices (computers, printers, servers, etc.) on a **local network (LAN)**.
+- Uses **MAC addresses** to forward data only to the intended device.
+- Operates within a **single subnet** — it does **not route between subnets**.
+- Does **not have IP routing capabilities** (unless it’s a *Layer 3 switch*, which is a special case).
+
+---
+
+### ❌ What is a Router?
+
+A **router** is a **Layer 3 (Network Layer)** device that:
+
+- Routes traffic **between different networks or subnets**.
+- Uses **IP addresses** to determine where to send packets.
+- Can connect LAN to WAN (e.g., your home network to the internet).
+
+✅ **Final Answer**:  
+**“Switch S: Switch_1” is a network switch — not a router.** It connects devices within the same local network using MAC addresses and does not route traffic between subnets."
+
+Me: "with this mask (255.255.255.128), is there a specific number of IP hosts available?"
+
+AI: "Yes — with subnet mask 255.255.255.128 (/25), there are exactly 126 usable host IPs per subnet."
+
+Me: "why is a switch needed if all hosts are part of the same subnet?"
