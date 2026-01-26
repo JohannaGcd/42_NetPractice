@@ -38,3 +38,18 @@ Level 3:
 	With this mask, there are exactly 126 usable host IPs.
 	Host A's IP is given: 104.198.77.125.
 	
+Level 4:
+- Configuration:
+	2 hosts (A and B), connected via a switch, which is connected to a router.
+	They are part of the same subnet. 
+- To complete:
+	Host A's IP is given (82.15.114.132), I matched other interface's close with IPs in the same range.
+
+Level 5:
+- Configuration:
+	2 hosts (A and B) need to communicate with a router.
+- To complete, I:
+	I know that the default gateway is always called "default" so I input that on the left tag below host A. It needs to communicate with the router, so I input the IP address of the router as destination.
+	Then for the masks, each host share the same mask as the router they are facing, as they 
+	are part of the same network. 
+	Finally, looking at the IP address of the network and the subnet masks given, I can deduce the IP address of my hosts.
