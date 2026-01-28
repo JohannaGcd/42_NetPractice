@@ -46,4 +46,34 @@ Level 4:
 - To complete:
 	First, we have to figure out the range of valid IPs for A's subet. A's IP is 82.15.114.132. Looking at R2's Mask (255.255.255.128) this is a /25, so a block size of 128. A's IP (ending with 132) doesn't fit. R3's Mask (255.255.255.192) corresponds to a /26 decimal. Block size should be 64, so the range corresponding to it's IP is 192-255, which excludes A's 132. Therefore, A belongs to a /26 subnet, which must be contained in R1. 
 	Since Host A is a /26 mask, the range of IPs is 128-191. So R1 should have a usable IP is that range (ex: 82.15.114.129).
-	Moving on to B, since A & B are on the same switch, B must be in the same subnet as A. So mask is /26 and IP should be in the same usable range (128-191).
+	Moving on to B, since A & B are on the same switch, B must be in the same subnet as A. So mask is /26 and IP should be in the same usable range (128-191).Level 4:
+- Configuration:
+	2 hosts (A and B), connected via a switch, which is connected to a router.
+	They are part of the same subnet. 
+- To complete:
+	Host A's IP is given (82.15.114.132), I matched other interface's close with IPs in the same range.
+
+Level 5:
+- Configuration:
+	2 hosts (A and B) need to communicate with a router.
+- To complete, I:
+	I know that the default gateway is always called "default" so I input that on the left tag below host A. It needs to communicate with the router, so I input the IP address of the router as destination.
+	Then for the masks, each host share the same mask as the router they are facing, as they 
+	are part of the same network. 
+	Finally, looking at the IP address of the network and the subnet masks given, I can deduce the IP address of my hosts.
+
+Level 6:
+- Configuration:
+- To complete, I:
+	Matched the Mask of R1 to Host A's, because they are part of the same subnet.
+	Matched R1's IP to that of Host A's (minus 1), because they share the same mask in the same subnet.
+	Set Host A's gateway to default, going to router's R1 interface (part of the subnet) and router's R1 gateway to default (because it takes A's input).
+	Finally, I set internet's receiver IP to the network address, because it doesn't know the IP on the subnet's side. So it should send a message to the network address of the router (ie. the first index of the subet range, with the CIDR: 78.109.226.128/25)
+
+Level 7:
+- To complete, I:
+	Set the smallest possible subnet mask, which allows 4 IP addresses, and 2 available host IPs: /30. This avoids overlap since they are part of the same network overall.
+	R11 facing host A has a given IP of 113.198.14.1. Since they are part of the same subnet, I can give A a similar IP in the same (close) range: 113.198.14.2
+	Next, I take R12's IP to R21, minus 1 since they are part of the same subnet.
+	Then, from R22, I can keep the same first 3 digits and give a host digit in a different subnet range (ie 17, or could be 5). Same to C1. 
+	Finally, since there is only one host communicating on each side, the source is default, and destination is the facing router's IP. From the router, it is the other router's facing IP.
