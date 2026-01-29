@@ -1,6 +1,11 @@
 # 42_NetPractice
 NetPractice taught me how to configure small-scale networks.
 
+Helpful sources:
+- https://42-cursus.gitbook.io/guide/4-rank-04/netpractice/theory
+- https://github.com/caroldaniel/42sp-cursus-netpractice
+
+
 Level 1:
 - We have two separate subnets, 
  	host A needs to communicate with host B in the same subnet

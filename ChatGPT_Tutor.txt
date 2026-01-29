@@ -1493,3 +1493,5 @@ Me: "with this mask (255.255.255.128), is there a specific number of IP hosts av
 AI: "Yes — with subnet mask 255.255.255.128 (/25), there are exactly 126 usable host IPs per subnet."
 
 Me: "why is a switch needed if all hosts are part of the same subnet?"
+
+[At this point I gave up using ChatGPT: the back and forth wasn't helpful. Describing the configuration, getting answers that were "smart" as in: trying to figure out what the person doesn't understand, and using images to guide them, drawing parallels. Basically having to-the-point answers/questions to the student so that I wouldn't get overwhelmed with everything I'm not getting. I decided to turn to other students instead, and made a jump in my understanding!]
