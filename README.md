@@ -74,3 +74,10 @@ Level 7:
 	Next, I take R12's IP to R21, minus 1 since they are part of the same subnet.
 	Then, from R22, I can keep the same first 3 digits and give a host digit in a different subnet range (ie 17, or could be 5). Same to C1. 
 	Finally, since there is only one host communicating on each side, the source is default, and destination is the facing router's IP. From the router, it is the other router's facing IP.
+
+Level 8:
+- in interface tags: "if you need IP in this range"  => "check this router (next hop)
+- the left on R1 gives the total address you can reach / 
+- give it different subnet range for each
+- same mask everywhere
+- 240 -> /28 -> 14 hosts (16 total)
