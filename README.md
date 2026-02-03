@@ -1,91 +1,279 @@
+Alright — let’s turn your notes into a clean, compliant `README.md`.
+
+Before you read it, quick self-check (Socratic style 🙂):
+• Does each section clearly answer *what*, *how to run*, and *what concepts*?
+• Does the Resources section explicitly mention networking concepts + AI usage?
+
+Now here’s a complete redraft that follows the requirements.
+
+---
+
 # 42_NetPractice
-NetPractice taught me how to configure small-scale networks.
 
-Helpful sources:
-- https://42-cursus.gitbook.io/guide/4-rank-04/netpractice/theory
-- https://github.com/caroldaniel/42sp-cursus-netpractice
+*This project has been created as part of the 42 curriculum by jguacide.*
 
+---
 
-Level 1:
-- We have two separate subnets, 
- 	host A needs to communicate with host B in the same subnet
- 	And host C needs to communicate with host D
-- We are given one modifiable tag for each subnet. 
-	To complete the exercise, each tag should be modified to enable communication
-	between the two hosts, as specified in the subject.
-- To complete the exercise, the IP address should be modified such as:
-	the router has the same number (first 3 digits based on the subnet mask)
-	the device number is close enough to that of the receiving host (the number should be between 1 and 254 inclusive, as .0 and.255 are reserved for the network and broadcast address respectively, ie. default gateway)
+## Description
 
-Level 2:
-- We have a similar configuration with Level 1, with two separate subnets, only:
-	1. communication should happen back and forth
-	2. 4 tags should be modified (both IP and Mask)
-- To complete the exercice between Hosts A and B:
-	Given are: Host B-IP (192.168.137.222) and Host A-Mask (255.255.255.224)
-	Given A and B are part of the same subnet, I changed B's subnet to the same as A's.
-	A subnet mask ending in .224 is equivalent to /27, meaning there are 30 total usable IPs
-	So, to allow back and forth communication between Host A and B, I changed A's
-	IP to 192.168.137.193 (could be any number between 193 and 221).
-- Between Hosts C and D:
-	Given are: Host C-Mask (255.255.255.252) and Host D-Mask (/30)
-	255.255.255.252 and /30 are equivalent. Question is what is the range of potential IPs within the range allowed by this subnet mask?
-	/30 allows only 2 usable Host IPs, so I can use either .1 or .2 (first .0 and last .4 being reserved, as we've seen above). From there, I could pick any IP within allowed ranges:
-	[picked arbitrarily: 192.168.1, outside of the "reserved ranges"] and then for each host a different ending, within scope: .1 and .2.
+NetPractice is a networking training project focused on understanding and configuring small-scale network topologies.
 
-Level 3:
-- Configuration: 
-	3 host computers, connected via a network switch, which connects devices
-	within the same network. 
-	Given are: Host A-IP (104.198.77.125), and Host C-Mask (255.255.255.128)
-- To complete, I:
-	Given that the hosts are connected via a switch, they are on the same subnet. 
-	Host A's IP is 104.198.77.125. With a /25 mask (255.255.255.128), this places it in the following subnet range: 104.108.77.0->127.
-	Therefore, I gave the other hosts (B and C) IPs in the same range (excluding .0 and .127, reserved for the network and default gateway respectively).
-	I gave the other hosts the same /25 mask so they would compute the same network address and communicate successfully. 
+Through a series of progressively complex levels, the goal is to correctly assign:
 
-Level 4:
-- Configuration:
-	2 hosts (A and B) are connected to a switch, which is connected to a router. 
-	We are given A's IP: 82.15.114.132 and 2 out of 3 router interfaces: R2: IP - 82.15.114.1 Mask - 255.255.255.128 and R3: IP - 82.15.114.244 Mask - 255.255.255.192
-- To complete:
-	First, we have to figure out the range of valid IPs for A's subet. A's IP is 82.15.114.132. Looking at R2's Mask (255.255.255.128) this is a /25, so a block size of 128. A's IP (ending with 132) doesn't fit. R3's Mask (255.255.255.192) corresponds to a /26 decimal. Block size should be 64, so the range corresponding to it's IP is 192-255, which excludes A's 132. Therefore, A belongs to a /26 subnet, which must be contained in R1. 
-	Since Host A is a /26 mask, the range of IPs is 128-191. So R1 should have a usable IP is that range (ex: 82.15.114.129).
-	Moving on to B, since A & B are on the same switch, B must be in the same subnet as A. So mask is /26 and IP should be in the same usable range (128-191).Level 4:
-- Configuration:
-	2 hosts (A and B), connected via a switch, which is connected to a router.
-	They are part of the same subnet. 
-- To complete:
-	Host A's IP is given (82.15.114.132), I matched other interface's close with IPs in the same range.
+* IP addresses
+* Subnet masks
+* Routing tables
+* Default gateways
 
-Level 5:
-- Configuration:
-	2 hosts (A and B) need to communicate with a router.
-- To complete, I:
-	I know that the default gateway is always called "default" so I input that on the left tag below host A. It needs to communicate with the router, so I input the IP address of the router as destination.
-	Then for the masks, each host share the same mask as the router they are facing, as they 
-	are part of the same network. 
-	Finally, looking at the IP address of the network and the subnet masks given, I can deduce the IP address of my hosts.
+in order to allow communication between hosts, switches, routers, and the Internet.
 
-Level 6:
-- Configuration:
-- To complete, I:
-	Matched the Mask of R1 to Host A's, because they are part of the same subnet.
-	Matched R1's IP to that of Host A's (minus 1), because they share the same mask in the same subnet.
-	Set Host A's gateway to default, going to router's R1 interface (part of the subnet) and router's R1 gateway to default (because it takes A's input).
-	Finally, I set internet's receiver IP to the network address, because it doesn't know the IP on the subnet's side. So it should send a message to the network address of the router (ie. the first index of the subet range, with the CIDR: 78.109.226.128/25)
+The project emphasizes practical comprehension of core networking concepts such as subnetting, routing, and packet forwarding by simulating real network flows and analyzing logs.
 
-Level 7:
-- To complete, I:
-	Set the smallest possible subnet mask, which allows 4 IP addresses, and 2 available host IPs: /30. This avoids overlap since they are part of the same network overall.
-	R11 facing host A has a given IP of 113.198.14.1. Since they are part of the same subnet, I can give A a similar IP in the same (close) range: 113.198.14.2
-	Next, I take R12's IP to R21, minus 1 since they are part of the same subnet.
-	Then, from R22, I can keep the same first 3 digits and give a host digit in a different subnet range (ie 17, or could be 5). Same to C1. 
-	Finally, since there is only one host communicating on each side, the source is default, and destination is the facing router's IP. From the router, it is the other router's facing IP.
+Each level introduces new constraints and configurations, requiring careful reasoning about network ranges and paths.
 
-Level 8:
-- in interface tags: "if you need IP in this range"  => "check this router (next hop)
-- the left on R1 gives the total address you can reach / 
-- give it different subnet range for each
-- same mask everywhere
-- 240 -> /28 -> 14 hosts (16 total)
+---
+
+## Instructions
+
+### Running the training interface
+
+1. Open the NetPractice interface (usually by opening `index.html` in a browser).
+2. For each level:
+
+   * Modify the IP addresses, subnet masks, and routing fields as required.
+   * Use the “Check” or validation button to test connectivity.
+   * Analyze the logs to understand packet flow and errors.
+
+### Exporting configurations
+
+* After completing each level successfully, export the configuration file.
+* Each exported file represents the solved state of one level.
+
+### Submission requirements
+
+➡️ You must place **10 exported configuration files (one per level)** at the **root of the repository**.
+
+---
+
+## Level Overview & Notes
+
+### Level 1
+
+* Two separate subnets:
+
+  * Host A ↔ Host B
+  * Host C ↔ Host D
+* One modifiable tag per subnet.
+
+Key idea:
+
+* Devices in the same subnet must share compatible IP ranges based on the subnet mask.
+* Network address (.0) and broadcast (.255) are reserved.
+
+---
+
+### Level 2
+
+* Similar to Level 1, but:
+
+  * Communication must be bidirectional
+  * Both IPs and masks are modified
+
+Key ideas:
+
+* `/27` (255.255.255.224) → 30 usable IPs per subnet
+* `/30` (255.255.255.252) → only 2 usable host IPs
+
+Hosts must fall inside the same valid subnet range to communicate.
+
+---
+
+### Level 3
+
+* Three hosts connected via a switch (same subnet).
+
+Given:
+
+* Host A IP: `104.198.77.125`
+* Mask: `/25` (255.255.255.128)
+
+Key idea:
+
+* `/25` splits the range into blocks of 128:
+
+  * `0–127`
+  * `128–255`
+
+All hosts were assigned IPs within the same subnet block.
+
+---
+
+### Level 4
+
+* Two hosts connected to a switch, which connects to a router.
+
+Given:
+
+* Host A IP: `82.15.114.132`
+* Router interfaces with different masks (`/25` and `/26`)
+
+Key ideas:
+
+* Determine which subnet Host A belongs to by checking block sizes.
+* `/26` has a block size of 64 → valid ranges like `128–191`.
+
+Host A, Host B, and the router interface were assigned IPs within the same `/26` subnet.
+
+---
+
+### Level 5
+
+* Hosts communicate with a router.
+
+Key ideas:
+
+* Each host uses the router interface as its default gateway.
+* Hosts share the same subnet mask as the router interface they connect to.
+* IPs are chosen within the correct network range.
+
+---
+
+### Level 6
+
+* Host A → Switch → Router → Internet.
+
+Given:
+
+* Host A IP: `78.109.226.227`
+* R1 mask: `/25`
+* R2 mask: `/28`
+* R2 IP: `163.172.250.12`
+
+Key ideas:
+
+* `/25` subnet containing Host A is `78.109.226.128–255`
+* Host A and R1 share this subnet
+* Internet must have a route back to the LAN subnet via R2
+
+A route was added on the Internet node to reach `78.109.226.128/25` through gateway `163.172.250.12`.
+
+---
+
+### Level 7
+
+* Multiple routers with minimal subnet sizes.
+
+Key ideas:
+
+* `/30` is used for point-to-point links (2 usable hosts).
+* Each router-to-router or router-to-host connection gets its own small subnet.
+* Avoid overlap by assigning different subnet blocks.
+
+---
+
+### Level 8
+
+Key ideas:
+
+* `/28` (255.255.255.240) → 16 total addresses, 14 usable hosts
+* Same mask used across segments
+* Different subnet ranges assigned per link
+* Routes indicate reachable networks via next-hop routers
+
+---
+
+Nice — before I rewrite, quick check: do you see that each level mainly revolves around **avoiding overlap, picking minimal masks, and fixing routing scope** rather than just filling IPs?
+
+Keep that in mind as you read the summaries.
+
+---
+
+### Level 8 (advanced subnetting & routing scope)
+
+Key ideas:
+
+* Use very small subnets (`/30`) for router-to-router links to avoid wasting IP ranges
+* Carefully choose non-overlapping IP blocks for each network segment
+* Larger subnet (`/28`) used where more hosts are needed
+* Internet routing must point back to a summarized network range instead of using multiple default routes
+
+Important concept:
+
+Instead of multiple conflicting default routes on R1, a single route was created pointing to a broader destination range (`141.195.172.0/27`) that covers all internal subnets behind R2.
+
+---
+
+### Level 9 (private IP limitation & reverse routing)
+
+Key ideas:
+
+* Small `/30` subnet used between router and host to minimize address usage
+* Initially used private IP range (`10.0.0.x`) for a network that connects to the Internet
+* Forward traffic reached the Internet, but reverse traffic failed
+
+Important concept:
+
+Since no NAT exists in NetPractice, **private IPs cannot communicate with the Internet**.
+
+Fix:
+
+* Replace private IPs with public IP ranges
+* Update routing tables on routers and Internet accordingly
+
+Additional goals:
+
+* Build a public A–B–R11 network
+* Add correct subnet destination in Internet routing (example: `/25`)
+* Determine correct network address for D’s subnet using `/18` block calculations and add it to R1’s routing table
+
+---
+
+### Level 10 (complex overlap management & multi-network routing)
+
+Key ideas:
+
+* Hosts H1 and H2 placed in same subnet using router-defined mask
+* Correct IP range chosen within allowed block
+
+For Internet-connected network:
+
+* Follow fixed masks and fixed router IPs along the path
+* Adjust Internet routing CIDR to `/24` to reach entire host subnet
+
+Hardest part:
+
+* Create a new `/30` subnet for R22–H31 without overlapping any existing networks
+* Analyze all previously used IP ranges
+* Pick the next free block (`150.152.40.192–195` in example)
+
+Final step:
+
+* Add this subnet’s **network address + mask** as destination in R1’s routing table
+
+---
+
+## Resources
+
+### Learning references
+
+* [https://42-cursus.gitbook.io/guide/4-rank-04/netpractice/theory](https://42-cursus.gitbook.io/guide/4-rank-04/netpractice/theory)
+* [https://github.com/caroldaniel/42sp-cursus-netpractice](https://github.com/caroldaniel/42sp-cursus-netpractice)
+
+### Networking concepts studied
+
+* TCP/IP addressing
+* Subnet masks and CIDR notation
+* Network and broadcast addresses
+* Default gateways
+* Routers and switches
+* Routing tables and packet forwarding
+* OSI model layers (especially Network and Data Link layers)
+
+### AI usage
+
+AI (ChatGPT) was used to:
+
+* Clarify subnetting logic and CIDR block calculations
+* Understand routing behavior and reverse path issues
+* Help structure explanations and improve README documentation
+
